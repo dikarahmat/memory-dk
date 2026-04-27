@@ -1,16 +1,74 @@
-# React + Vite
+# memory_ — DK Project #8
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> DK Project #8 | Built with React + Vite
 
-Currently, two official plugins are available:
+A minimal memory card game with 3D flip animation and difficulty levels. Built as part of a 30-day frontend project challenge.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 **Live Demo:** [memory-dk.vercel.app](https://memory-dk.vercel.app/)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- 🃏 3D flip card animation
+- 4 difficulty levels: Easy, Medium, Hard, Expert
+- ⏱️ Timer & move counter
+- 🏆 Best score saved to localStorage
+- ✅ Win modal with stats
+- 💚 Matched cards highlight
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- **React** — UI & state management
+- **Vite** — build tool
+- **CSS** — custom styling, no UI library
+- **Vercel** — deployment
+
+---
+
+## Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/dikarahmat/memory-dk.git
+
+# Install dependencies
+cd memory-dk
+npm install
+
+# Run locally
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## Project Structure
+
+```
+src/
+  components/
+    Header.jsx    # Stats bar & difficulty controls
+    Board.jsx     # Card grid layout
+    Card.jsx      # Flip card with animation
+    WinModal.jsx  # Win screen with stats
+  App.jsx         # Main game logic
+  App.css         # Global styles
+```
+
+---
+
+## What I Learned
+
+- CSS 3D transform untuk flip animation
+- Game state management dengan React
+- setTimeout untuk delay card flip logic
+- localStorage untuk persistent best score
+- Dynamic grid layout berdasarkan difficulty
+
+---
+
+Made by [@dikarahmat](https://github.com/dikarahmat)
