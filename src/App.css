@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@400;700&display=swap");
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1e1e1e;
+  --border: #2a2a2a;
+  --accent: #ffd93d;
+  --accent2: #ffbe0b;
+  --text: #f0f0f0;
+  --text-muted: #555;
+  --matched: #06d6a0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Space Mono", monospace;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.g1 {
+  width: 400px; height: 400px;
+  background: rgba(255, 217, 61, 0.07);
+  top: -100px; left: -100px;
+}
+
+.g2 {
+  width: 300px; height: 300px;
+  background: rgba(6, 214, 160, 0.05);
+  bottom: 0; right: -80px;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* HEADER */
+.header { margin-bottom: 32px; }
+
+.header-top { margin-bottom: 24px; }
+
+.project-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  justify-content: center; 
+}
+
+.dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.num { color: var(--accent); }
+
+.title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(48px, 10vw, 72px);
+  font-weight: 800;
+  line-height: 0.9;
+  margin-bottom: 8px;
+}
+
+.accent { color: var(--accent); }
+.accent-text { color: var(--accent) !important; }
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.difficulty { display: flex; gap: 6px; }
+
+.diff-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.diff-btn:hover { border-color: var(--accent); color: var(--accent); }
+.diff-btn.active { background: var(--accent); border-color: var(--accent); color: #0a0a0a; font-weight: 700; }
+
+.restart-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.restart-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* BOARD */
+.board {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* CARD */
+.card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  perspective: 600px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+  border-radius: 12px;
+}
+
+.card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: border-color 0.2s;
+}
+
+.card:not(.flipped):hover .card-front { border-color: var(--accent); color: var(--accent); }
+
+.card-back {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: clamp(24px, 5vw, 36px);
+  transform: rotateY(180deg);
+}
+
+.card.matched .card-front,
+.card.matched .card-back {
+  border-color: var(--matched);
+  background: rgba(6, 214, 160, 0.08);
+}
+
+/* WIN MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.modal-emoji { font-size: 56px; margin-bottom: 16px; }
+
+.modal-title {
+  font-family: "Syne", sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.modal-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.modal-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.modal-stat {
+  flex: 1;
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.modal-stat-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.modal-stat-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.modal-btn {
+  width: 100%;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: #0a0a0a;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.modal-btn:hover { opacity: 0.85; }
